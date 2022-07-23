@@ -1,6 +1,7 @@
 package com.example.recyclerview07062022;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
@@ -10,23 +11,18 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    RecyclerView rcvFood;
+    FoodAdapter foodAdapter;
+    List<Food> foodList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        List<String> stringList = new ArrayList<>();
-//        // Thêm
-//        stringList.add("teo");
-//        stringList.add("ty");
-//
-//        // Cập nhật
-//        stringList.set(0, "tuan");
-//
-//        // Xóa
-//        stringList.remove(1);
-//
-//        // Lấy kích thước của list
-//        stringList.size();
+        rcvFood = findViewById(R.id.recycler_view_food);
+        foodList = Food.getMock();
+        foodAdapter = new FoodAdapter(foodList);
+        rcvFood.setHasFixedSize(true);
+        rcvFood.setAdapter(foodAdapter);
     }
 }

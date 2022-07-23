@@ -28,7 +28,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     @Override
     public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.layout_item_food, parent, true);
+        View view = layoutInflater.inflate(R.layout.layout_item_food, parent, false);
         return new FoodViewHolder(view);
     }
 
@@ -65,7 +65,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         public void bind(Food food) {
             img.setImageResource(food.getImage());
             tvName.setText(food.getName());
-            tvDistance.setText(String.format(">%f", food.getDistance()));
+            tvAddress.setText(food.getAddress());
+            tvDistance.setText(String.format(">%.1f km", food.getDistance()));
             // List Service Kind
             serviceKindList = food.getServiceKindList();
             if (serviceKindList == null || serviceKindList.size() == 0) {
@@ -90,10 +91,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
             // Discount
             if (!food.getDiscount().isEmpty()) {
-                tvDiscount.setVisibility(View.GONE);
+                tvDiscount.setVisibility(View.VISIBLE);
+                tvDiscount.setText(food.getDiscount());
             } else {
                 tvDiscount.setVisibility(View.GONE);
-                tvDiscount.setText(food.getDiscount());
             }
 
             // Close time
@@ -101,11 +102,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             hourCurrent = calendar.get(Calendar.HOUR_OF_DAY);
             minutesCurrent = calendar.get(Calendar.MINUTE);
 
-            if (
-                    checkCurrentTimeOver(food.getHourOpenTime(), hourCurrent, food.getHourCloseTime()) &&
-                    checkCurrentTimeOver(food.getMinutesOpenTime(), minutesCurrent, food.getMinutesOpenTime())
-            ) {
-                tvCloseTime.setVisibility(View.GONE);
+            // 7:00 -> 21:00
+            // 8: 03
+            if (!checkCurrentTimeOver(food.getHourOpenTime(), hourCurrent, food.getHourCloseTime())) {
+                if (!checkCurrentTimeOver(food.getMinutesOpenTime(), minutesCurrent, food.getMinutesCloseTime())) {
+                    tvCloseTime.setVisibility(View.GONE);
+                }
             } else {
                 tvCloseTime.setVisibility(View.VISIBLE);
             }
@@ -113,6 +115,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     }
 
     private boolean checkCurrentTimeOver(int timeOpen, int timeCurrent, int timeClose) {
-        return timeCurrent < timeClose && timeCurrent >= timeOpen;
+        return timeCurrent >= timeClose && timeCurrent < timeOpen;
     }
 }
