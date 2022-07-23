@@ -9,6 +9,8 @@ public enum ServiceKind {
     GROUP ("Hội nhóm"),
     BUFFET ("Buffet"),
     SHOP_ONLINE ("Shop online"),
+    BIRTHDAY ("Sinh nhật"),
+    STREET_FOOD ("Đườn phố"),
     STREET ("Vỉa hè");
 
     private final String name;

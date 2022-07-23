@@ -35,6 +35,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
     @Override
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         Food food = foodList.get(position);
+        holder.bind(food);
     }
 
     @Override
