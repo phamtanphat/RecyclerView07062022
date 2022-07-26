@@ -132,7 +132,7 @@ public class Food {
 
     public static List<Food> getMock() {
         return new ArrayList<>(Arrays.asList(
-                new Food(R.drawable.foody_restaurant_sanfulou, "San Fu Lou - Ẩm Thực Quảng Đông - Lê Lai", "Tầng Trệt, AB Tower, 76A Lê Lai, P. Bến Thành,  Quận 1, TP. HCM", Arrays.asList(ServiceKind.RESTAURANT), "Buoi sang - 10%", 15f, 7, 0, 22, 10),
+                new Food(R.drawable.foody_restaurant_sanfulou, "San Fu Lou - Ẩm Thực Quảng Đông - Lê Lai", "Tầng Trệt, AB Tower, 76A Lê Lai, P. Bến Thành,  Quận 1, TP. HCM", Arrays.asList(ServiceKind.RESTAURANT), "Buoi sang - 10%", 15f, 7, 0, 10, 10),
                 new Food(R.drawable.foody_ut_ut_quan, "Quán Ụt Ụt - Barbecue & Beer - Võ Văn Kiệt", "168 Võ Văn Kiệt, P. Cầu Ông Lãnh,  Quận 1, TP. HCM", Arrays.asList(), "Buoi toi - 20%", 18f, 11, 0, 24, 0),
                 new Food(R.drawable.foody_restaurant_fuji, "Fuji Japanese Restaurant 富士 - Nikko Saigon Hotel", "Tầng Trệt Nikko Saigon Hotel, 235 Nguyễn Văn Cừ, P. Phạm Ngũ Lão,  Quận 1, TP. HCM", Arrays.asList(ServiceKind.RESTAURANT, ServiceKind.FAMILY, ServiceKind.GROUP), "Không có ưu đãi", 14.7f, 10, 18, 19, 11),
                 new Food(R.drawable.foody_buffet_sabusabu, "Shabu Ya - SC VivoCity", "Tầng 4 - SC VivoCity, 1058 Nguyễn Văn Linh, KP. 1, P. Tân Phong,  Quận 7, TP. HCM", Arrays.asList(ServiceKind.BUFFET, ServiceKind.RESTAURANT, ServiceKind.FAMILY, ServiceKind.GROUP), "Ca ngay 15%", 28.4f, 9, 5, 22, 1),
