@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -24,5 +26,12 @@ public class MainActivity extends AppCompatActivity {
         foodAdapter = new FoodAdapter(foodList);
         rcvFood.setHasFixedSize(true);
         rcvFood.setAdapter(foodAdapter);
+
+        foodAdapter.setOnClickListener(new FoodAdapter.OnListenerItemClick() {
+            @Override
+            public void onClick(int position) {
+                Log.d("BBB", foodList.get(position).getName());
+            }
+        });
     }
 }

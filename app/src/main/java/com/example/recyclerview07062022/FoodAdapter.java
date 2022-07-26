@@ -19,7 +19,7 @@ import java.util.List;
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder>{
 
     List<Food> foodList;
-
+    OnListenerItemClick onListenerItemClick;
     public FoodAdapter(List<Food> foodList) {
         this.foodList = foodList;
     }
@@ -60,6 +60,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             tvDistance = itemView.findViewById(R.id.text_view_distance);
             tvDiscount = itemView.findViewById(R.id.text_view_discount);
             img = itemView.findViewById(R.id.image_view);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onListenerItemClick.onClick(getAdapterPosition());
+                }
+            });
         }
 
         public void bind(Food food) {
@@ -120,5 +127,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     private boolean checkCurrentTimeOver(int timeOpen, int timeCurrent, int timeClose) {
         return timeCurrent >= timeClose || timeCurrent < timeOpen;
+    }
+
+    public void setOnClickListener(OnListenerItemClick onListenerItemClick) {
+        this.onListenerItemClick = onListenerItemClick;
+    }
+
+    interface OnListenerItemClick {
+        void onClick(int position);
     }
 }
