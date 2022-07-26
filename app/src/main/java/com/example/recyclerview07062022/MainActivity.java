@@ -1,8 +1,10 @@
 package com.example.recyclerview07062022;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -30,7 +32,27 @@ public class MainActivity extends AppCompatActivity {
         foodAdapter.setOnClickListener(new FoodAdapter.OnListenerItemClick() {
             @Override
             public void onClick(int position) {
-                Log.d("BBB", foodList.get(position).getName());
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle(foodList.get(position).getName());
+                builder.setMessage("Bạn có muốn xóa thông tin quán?");
+
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        foodList.remove(position);
+                        foodAdapter.notifyItemRemoved(position);
+                        Toast.makeText(MainActivity.this, "Bạn đã xóa thành công", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+
+                builder.show();
             }
         });
     }
